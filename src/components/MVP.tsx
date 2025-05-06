@@ -2,8 +2,26 @@
 import React from 'react';
 import { Separator } from '@/components/ui/separator';
 import { Progress } from '@/components/ui/progress';
+import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
+import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
 
 const MVP = () => {
+  const phaseData = [
+    { name: 'Discovery & Planning', value: 15, color: '#0EA5E9' },
+    { name: 'Design & Prototyping', value: 20, color: '#8B5CF6' },
+    { name: 'Development', value: 40, color: '#6E59A5' },
+    { name: 'Testing & Refinement', value: 15, color: '#9b87f5' },
+    { name: 'Deployment', value: 10, color: '#D6BCFA' },
+  ];
+
+  const chartConfig = phaseData.reduce((acc, item) => {
+    acc[item.name] = {
+      label: item.name,
+      color: item.color,
+    };
+    return acc;
+  }, {});
+
   return (
     <section id="mvp" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -82,14 +100,39 @@ const MVP = () => {
           </div>
           
           <div className="order-1 lg:order-2">
-            <div className="relative">
+            <div className="relative h-[400px]">
               <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg blur-lg opacity-25"></div>
-              <div className="relative bg-white rounded-lg shadow-xl overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=2670" 
-                  alt="MVP Development Process" 
-                  className="w-full h-auto"
-                />
+              <div className="relative bg-white rounded-lg shadow-xl overflow-hidden h-full">
+                <div className="p-4 h-full">
+                  <h3 className="text-xl font-semibold text-center mb-4">MVP Development Phases</h3>
+                  <ChartContainer config={chartConfig} className="h-[300px]">
+                    <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
+                      <Pie
+                        data={phaseData}
+                        cx="50%"
+                        cy="50%"
+                        innerRadius={70}
+                        outerRadius={120}
+                        paddingAngle={2}
+                        dataKey="value"
+                        nameKey="name"
+                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                        labelLine={false}
+                      >
+                        {phaseData.map((entry, index) => (
+                          <Cell key={`cell-${index}`} fill={entry.color} />
+                        ))}
+                      </Pie>
+                      <ChartTooltip
+                        content={
+                          <ChartTooltipContent 
+                            labelClassName="font-medium" 
+                          />
+                        }
+                      />
+                    </PieChart>
+                  </ChartContainer>
+                </div>
               </div>
             </div>
           </div>
