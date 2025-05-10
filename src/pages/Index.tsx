@@ -6,7 +6,6 @@ import Services from '../components/Services';
 import Observability from '../components/Observability';
 import DataEngineering from '../components/DataEngineering';
 import MVP from '../components/MVP';
-import LogoMarquee from '../components/LogoMarquee';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 
@@ -19,7 +18,6 @@ const Index = () => {
       <Observability />
       <DataEngineering />
       <MVP />
-      <LogoMarquee />
       <Contact />
       <Footer />
     </div>

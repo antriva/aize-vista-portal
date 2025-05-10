@@ -3,19 +3,21 @@ import React from 'react';
 import { Separator } from '@/components/ui/separator';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+import { Card, CardContent } from '@/components/ui/card';
+import { Rocket, Clock, Calendar } from 'lucide-react';
 
 const MVP = () => {
   const phaseData = [
-    { name: 'Discovery & Planning', value: 15, color: '#0EA5E9' },
-    { name: 'Design & Prototyping', value: 20, color: '#8B5CF6' },
-    { name: 'Development', value: 40, color: '#6E59A5' },
-    { name: 'Testing & Refinement', value: 15, color: '#9b87f5' },
-    { name: 'Deployment', value: 10, color: '#D6BCFA' },
+    { name: 'Discovery & Planning', value: 15, color: '#0EA5E9', days: '2 days' },
+    { name: 'Design & Prototyping', value: 20, color: '#8B5CF6', days: '3 days' },
+    { name: 'Development', value: 40, color: '#6E59A5', days: '6 days' },
+    { name: 'Testing & Refinement', value: 15, color: '#9b87f5', days: '2 days' },
+    { name: 'Deployment', value: 10, color: '#D6BCFA', days: '1 day' },
   ];
 
   const chartConfig = phaseData.reduce((acc, item) => {
     acc[item.name] = {
-      label: item.name,
+      label: `${item.name} (${item.days})`,
       color: item.color,
     };
     return acc;
@@ -33,14 +35,13 @@ const MVP = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="order-1 lg:order-1">
-            <div className="relative h-[400px]">
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg blur-lg opacity-25"></div>
-              <div className="relative bg-white rounded-lg shadow-xl overflow-hidden h-full">
-                <div className="p-4 h-full">
-                  <h3 className="text-xl font-semibold text-center mb-4">MVP Development Phases</h3>
-                  <ChartContainer config={chartConfig} className="h-[300px]">
-                    <PieChart margin={{ top: 0, right: 0, bottom: 0, left: 0 }}>
+          <div className="order-1">
+            <Card className="overflow-hidden border border-gray-200 shadow-lg bg-white">
+              <CardContent className="p-6">
+                <h3 className="text-xl font-semibold text-center mb-4">MVP Development Timeline</h3>
+                <ChartContainer config={chartConfig} className="h-[320px] mt-4">
+                  <ResponsiveContainer>
+                    <PieChart>
                       <Pie
                         data={phaseData}
                         cx="50%"
@@ -50,8 +51,11 @@ const MVP = () => {
                         paddingAngle={2}
                         dataKey="value"
                         nameKey="name"
-                        label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
-                        labelLine={false}
+                        label={({ name, percent, days }) => {
+                          const item = phaseData.find(p => p.name === name);
+                          return `${name}: ${item?.days}`;
+                        }}
+                        labelLine={true}
                       >
                         {phaseData.map((entry, index) => (
                           <Cell key={`cell-${index}`} fill={entry.color} />
@@ -65,83 +69,65 @@ const MVP = () => {
                         }
                       />
                     </PieChart>
-                  </ChartContainer>
-                </div>
-              </div>
-            </div>
+                  </ResponsiveContainer>
+                </ChartContainer>
+              </CardContent>
+            </Card>
           </div>
           
-          <div className="order-2 lg:order-2">
-            <h3 className="text-2xl font-bold mb-6">From Concept to Launch in 14 Days</h3>
-            <p className="text-gray-700 mb-8">
-              Our rapid MVP development process is designed to quickly validate your ideas, 
-              minimize time-to-market, and provide you with a solid foundation for future growth.
-            </p>
-            
-            <div className="space-y-6">
+          <div className="order-2">
+            <div className="space-y-8">
               <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">Discovery & Planning</span>
-                  <span className="text-blue-600">Day 1-2</span>
-                </div>
-                <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-blue-600 w-[15%]" />
-                </div>
-                <p className="text-sm text-gray-600 mt-1">
-                  Requirements gathering, architecture planning, and scope definition
+                <h3 className="text-2xl font-bold mb-4 flex items-center">
+                  <Rocket className="mr-2 text-blue-600" />
+                  From Concept to Launch in 14 Days
+                </h3>
+                <p className="text-gray-700 mb-6">
+                  Our rapid MVP development process is designed to quickly validate your ideas, 
+                  minimize time-to-market, and provide you with a solid foundation for future growth.
                 </p>
               </div>
               
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">Design & Prototyping</span>
-                  <span className="text-blue-600">Day 3-5</span>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" 
+                    alt="Team working on MVP" 
+                    className="rounded-lg shadow-lg object-cover h-full w-full"
+                  />
                 </div>
-                <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-purple-600 w-[20%]" />
+                
+                <div className="space-y-6">
+                  <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-blue-600 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Calendar className="h-5 w-5 text-blue-600" />
+                      <span className="font-semibold">Week 1</span>
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      Discovery, planning, design and initial development. We establish the core requirements and begin building your foundation.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-purple-600 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Calendar className="h-5 w-5 text-purple-600" />
+                      <span className="font-semibold">Week 2</span>
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      Development completion, testing, refinement, and deployment. Your MVP is ready for market testing and user feedback.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white p-4 rounded-lg shadow-md border-l-4 border-green-600 hover:shadow-lg transition-shadow">
+                    <div className="flex items-center gap-3 mb-2">
+                      <Clock className="h-5 w-5 text-green-600" />
+                      <span className="font-semibold">Post-Launch</span>
+                    </div>
+                    <p className="text-sm text-gray-600">
+                      We provide ongoing support, analytics integration, and roadmap planning for future iterations based on real user feedback.
+                    </p>
+                  </div>
                 </div>
-                <p className="text-sm text-gray-600 mt-1">
-                  UI/UX design, interactive prototypes, and stakeholder approval
-                </p>
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">Development</span>
-                  <span className="text-blue-600">Day 6-11</span>
-                </div>
-                <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-indigo-600 w-[40%]" />
-                </div>
-                <p className="text-sm text-gray-600 mt-1">
-                  Core functionality implementation, backend development, and API integration
-                </p>
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">Testing & Refinement</span>
-                  <span className="text-blue-600">Day 12-13</span>
-                </div>
-                <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-violet-500 w-[15%]" />
-                </div>
-                <p className="text-sm text-gray-600 mt-1">
-                  Quality assurance, bug fixing, and performance optimization
-                </p>
-              </div>
-              
-              <div>
-                <div className="flex justify-between mb-2">
-                  <span className="font-medium">Deployment</span>
-                  <span className="text-blue-600">Day 14</span>
-                </div>
-                <div className="h-2 w-full bg-gray-200 rounded-full overflow-hidden">
-                  <div className="h-full bg-purple-300 w-[10%]" />
-                </div>
-                <p className="text-sm text-gray-600 mt-1">
-                  Production deployment, documentation, and handover
-                </p>
               </div>
             </div>
           </div>
