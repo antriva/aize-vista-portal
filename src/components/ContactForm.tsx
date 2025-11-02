@@ -35,14 +35,19 @@ const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      // This would be replaced with your actual Google Sheets integration
-      // For now, we'll simulate a successful submission
-      console.log('Form submitted with data:', formData);
+      // Submit to Formspree
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Form submission failed');
+      }
       
-      // Simulate API call delay
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Show success message
       toast.success('Your message has been sent', {
         description: "We'll get back to you as soon as possible.",
       });
