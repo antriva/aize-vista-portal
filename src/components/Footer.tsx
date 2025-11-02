@@ -8,13 +8,13 @@ const Footer = () => {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           <div>
             <h3 className="text-xl font-bold text-white mb-4">
-              <span className="text-blue-400">AiZe</span>Ton
+              Antriva AI Labs
             </h3>
             <p className="mb-4 text-gray-400">
-              Transforming businesses through intelligent observability,
+              Transforming businesses through intelligent AI agents, observability,
               data engineering, and rapid software development.
             </p>
           </div>
@@ -37,22 +37,13 @@ const Footer = () => {
               <li><a href="#" className="hover:text-blue-400 transition-colors">Blog</a></li>
             </ul>
           </div>
-          
-          <div>
-            <h4 className="text-white text-lg font-semibold mb-4">Legal</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Terms of Service</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Cookie Policy</a></li>
-            </ul>
-          </div>
         </div>
         
         <Separator className="my-8 bg-gray-700" />
         
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="mb-4 md:mb-0">
-            &copy; {currentYear} AiZeTon. All rights reserved.
+            &copy; {currentYear} Antriva AI Labs. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="hover:text-blue-400 transition-colors">

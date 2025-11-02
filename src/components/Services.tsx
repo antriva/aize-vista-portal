@@ -1,7 +1,7 @@
 
 import React from 'react';
 import ServiceCard from './ServiceCard';
-import { Monitor, Database, Rocket } from 'lucide-react';
+import { Monitor, Database, Rocket, Bot } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
 
 const Services = () => {
@@ -16,7 +16,20 @@ const Services = () => {
           <Separator className="mt-8 bg-blue-200 w-24 h-1 mx-auto" />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <ServiceCard
+            title="AI Agents & Automation"
+            description="Intelligent automation using cutting-edge AI technologies"
+            icon={Bot}
+            features={[
+              "ADK (Agent Development Kit) integration",
+              "MCP (Model Context Protocol) implementation",
+              "A2A (Agent-to-Agent) communication",
+              "LangChain and LangGraph workflows",
+              "n8n and Make automation platforms"
+            ]}
+          />
+
           <ServiceCard
             title="Observability"
             description="End-to-end monitoring solutions for your entire tech stack"

@@ -2,7 +2,7 @@
 import React from 'react';
 import { Separator } from '@/components/ui/separator';
 import ContactForm from './ContactForm';
-import { Mail, Phone, MessageSquare } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 
 const Contact = () => {
   return (
@@ -35,7 +35,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Email Us</h4>
-                    <p className="text-blue-600">contact@aizeton.com</p>
+                    <p className="text-blue-600">admin@antriva.co.in</p>
                   </div>
                 </div>
                 
@@ -45,20 +45,10 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="font-semibold mb-1">Call Us</h4>
-                    <p className="text-blue-600">+1 (555) 123-4567</p>
+                    <p className="text-blue-600">+91 7795709574</p>
                   </div>
                 </div>
                 
-                <div className="flex items-start">
-                  <div className="mt-1 mr-4 w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
-                    <MessageSquare size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold mb-1">Live Chat</h4>
-                    <p className="text-gray-600">Available Monday-Friday</p>
-                    <p className="text-gray-600">9 AM - 5 PM ET</p>
-                  </div>
-                </div>
               </div>
               
               <div className="mt-8 pt-8 border-t border-gray-200">

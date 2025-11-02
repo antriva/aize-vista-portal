@@ -12,7 +12,7 @@ const Header = () => {
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <h1 className="text-2xl font-bold text-gray-900">
-            <span className="text-blue-600">AiZe</span>Ton
+            Antriva AI Labs
           </h1>
         </div>
 
@@ -33,7 +33,6 @@ const Header = () => {
           <a href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors">
             Contact
           </a>
-          <Button>Get Started</Button>
         </nav>
 
         {/* Mobile Menu Button */}
@@ -86,7 +85,6 @@ const Header = () => {
             >
               Contact
             </a>
-            <Button className="w-full">Get Started</Button>
           </div>
         </div>
       )}
