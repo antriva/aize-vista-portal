@@ -5,6 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  base: '/aize-vista-portal/', // GitHub Pages base path - change to '/' if using custom domain at root
   server: {
     host: "::",
     port: 8080,
